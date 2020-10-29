@@ -43,15 +43,6 @@ To supplement the above, we will also be applying the multilevel regression post
 
 ## Model Specifics
 
-----
-
-As mentioned previously, we would adopt a logistic regression model to find the estimate for the proportion of voters who will vote for Trump. We are specifically choosing variables of *employment status*, *gender*, *race*, *household income*, *education level* and *age group*. 
-
-The model is defined by: $$log(\frac{\hat{p}}{1-\hat{p}}) = \hat{\beta_0} + \hat{\beta_1} *x_{employment} +\hat{\beta_2}*x_{gender} +\hat{\beta_3}*x_{race}+\hat{\beta_4}*x_{income} + \hat{\beta_5}*x_{education} + \hat{\beta_6}*x_{age}$$, with each $x_{variable}$ representing corresponding predictor variable, and each $\hat{\beta_i}$ representing the relative change in log odds as the value for the predictor variable increases by an additional unit. Furthermore, $log(\frac{\hat{p}}{1-\hat{p}})$ is the defined log odds rather than probability, so transformation on the log odds would be needed to find the corresponding $\hat{p}$.
-
-
-----
-
 I will (incorrectly) be using a linear regression model to model the proportion of voters who will vote for Donald Trump. This is a naive model. I will only be using age, which is recorded as a numeric variable, to model the probability of voting for Donald Trump. The simple linear regression model I am using is:
 
 $$ y = \beta_0+\beta_1  x_{age} + \epsilon$$
@@ -61,7 +52,6 @@ Where $y$ represents the proportion of voters who will vote for Donald Trump. Si
 ```{r, include=FALSE}
 
 # Creating the Model
-
 
 logitm <- glm(vote_trump~as.factor(employment)+as.factor(gender)+as.factor(race_ethnicity)+as.factor(household_income)+as.factor(education)+as.factor(age), family = "binomial")
 
