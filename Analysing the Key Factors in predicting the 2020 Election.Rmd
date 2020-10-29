@@ -18,7 +18,7 @@ An overarching issue that rises an immense political controvery is the United St
 
 # Data
 
-TODO Add data description; we will be using the UCLA Data and the ACS data...etc
+We will be using the Democracy Fund + UCLA Nationscape ‘Full Data Set’ for modelling and the ACS 2018 5 year data for post-stratification in order to perform our analysis. From the ACS data, we selected the key factors which we believed would have the strongest effect on the prediction of the outcome. The variables are the region, state, sex, age, race, hispanic origin, birthplace, years in the united states, education, labor force status and total income.
 
 
 ```{r setup, include=FALSE}

@@ -13,7 +13,7 @@
 library(haven)
 library(tidyverse)
 # Read in the raw data.
-setwd("C:/Users/Sammi-Jo/Desktop/PS3")
+setwd("/Users/usman_sadiq/Desktop/sta304/PS3/sta304_ps3/")
 raw_data <- read_dta("inputs/usa_00002.dta.gz")
 
 
