@@ -14,7 +14,7 @@ TODO The overall summmary of the report; Mainly include background, what we did 
 
 # Introduction
 
-TODO Add intro; Background info of what we are doing, what analyses we will be doing
+An overarching issue that rises an immense political controvery is the United States presidential election. In 2016, Donald Trump impressed the political scene by being elected as the Republican nominee for president. He also continuously won the white house votes, which eventually lead to a surprise of being elected as the president, while many observers of the political scene predicted the election of Hillary Clinton. (Jérôme et. al, 2020) Now, with the election being an ongoing event, Trump has already checked on the different parties in the previous years. (Kim & Kim, 2020) With the ongoing presidential debate as well, Trump has also been having his firm stance against Biden, for his another successful election. The US presidential election as we observe is mainly a competition of the current and former president versus the most popular candiate. We will be modelling a multilevel logistic regression with the UCLA nationscape dataset and preform a poststratification process with the American Community Surveys (ACS) to predict the election outcome and to target the most successful candidate for the 2020 US election.
 
 # Data
 
@@ -25,10 +25,10 @@ TODO Add data description; we will be using the UCLA Data and the ACS data...etc
 library(tidyverse)
 
 # Loading in the cleaned survey Data
-survey_data <- read_csv("./survey_data.csv")
+survey_data <- read_csv("./outputs/survey_data.csv")
 
 # Loading in the cleaned census Data
-census_data <- read_csv("./census_data.csvss")
+census_data <- read_csv("./outputs/census_data.csv")
 
 ```
 
@@ -104,4 +104,6 @@ Tausanovitch, Chris and Lynn Vavreck. 2020. Democracy Fund + UCLA Nationscape, O
 Steven Ruggles, Sarah Flood, Ronald Goeken, Josiah Grover, Erin Meyer, Jose Pacas and Matthew Sobek. IPUMS USA: Version
   10.0 [dataset]. Minneapolis, MN: IPUMS, 2020. https://doi.org/10.18128/D010.V10.0
 
+Jérôme, B., Jérôme, V., Mongrain, P., & Nadeau, R. (2020). State-Level Forecasts for the 2020 US Presidential 
+  Election: Tough Victory Ahead for Biden. PS: Political Science & Politics, 1-4. doi:10.1017/S1049096520001377
 
