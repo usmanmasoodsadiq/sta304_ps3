@@ -8,6 +8,20 @@ output:
     df_print: paged
 ---
 
+# Abtract
+
+TODO The overall summmary of the report; Mainly include background, what we did for the analyses, results and discussion.
+
+# Introduction
+
+TODO Add intro; Background info of what we are doing, what analyses we will be doing
+
+# Data
+
+TODO Add data description; we will be using the UCLA Data and the ACS data...etc
+
+
+
 ```{r setup, include=FALSE}
 library(tidyverse)
 
@@ -18,11 +32,6 @@ survey_data <- read_csv("./survey_data.csv")
 census_data <- read_csv("./census_data.csvss")
 
 ```
-
-# The Analysis of the Key Factors in predicting the 2020 Election
-
-## Victor ChanYoung Cho, Usman Sidiq
-## Nov 2nd, 2020
 
 
 # Model
