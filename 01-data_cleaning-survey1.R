@@ -13,7 +13,7 @@
 #### Workspace setup ####
 library(haven)
 library(tidyverse)
-setwd("C:/Users/Sammi-Jo/Desktop/PS3")
+setwd("Users/Victor/Documents/sta304_ps3")
 # Read in the raw data (You might need to change this if you use a different dataset)
 raw_data <- read_dta("inputs/ns20200625/ns20200625.dta")
 # Add the labels
