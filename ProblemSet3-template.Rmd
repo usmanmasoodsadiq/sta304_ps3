@@ -1,7 +1,7 @@
 ---
-title: "Title of Your Report"
-author: "Names of your Group Members"
-date: "Due Date"
+title: "All of this is bullshit!"
+author: "Victor ChanYoung Cho, Usman Sadiq"
+date: "Nov 2nd, 2020"
 output:
   pdf_document: default
   html_document:
@@ -12,10 +12,10 @@ output:
 library(tidyverse)
 
 # Loading in the cleaned survey Data
-survey_data <- read_csv("C:/Users/Sammi-Jo/Desktop/PS3/outputs/survey_data.csv")
+survey_data <- read_csv("./survey_data.csv")
 
 # Loading in the cleaned census Data
-census_data <- read_csv("C:/Users/Sammi-Jo/Desktop/PS3/outputs/census_data.csv")
+census_data <- read_csv("./census_data.csvss")
 
 ```
 
@@ -90,5 +90,7 @@ Here you discuss subsequent work to be done after this report. This can include 
 
 # References
 
+Tausanovitch, Chris and Lynn Vavreck. 2020. Democracy Fund + UCLA Nationscape, October 10-17, 2019 (version
+  20200814). Retrieved from [https://www.voterstudygroup.org/downloads?key=9e0589c5-5ecc-4575-be2a-8285262f97fe].
 
 
