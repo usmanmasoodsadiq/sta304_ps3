@@ -19,10 +19,10 @@ census_data <- read_csv("./census_data.csvss")
 
 ```
 
-# Title of your Report
+# The Analysis of the Key Factors in predicting the 2020 Election
 
-## Name(s) of Author(s) 
-## Date
+## Victor ChanYoung Cho, Usman Sidiq
+## Nov 2nd, 2020
 
 
 # Model
