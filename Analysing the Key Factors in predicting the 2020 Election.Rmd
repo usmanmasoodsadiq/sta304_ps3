@@ -99,7 +99,7 @@ Here you discuss subsequent work to be done after this report. This can include 
 # References
 
 Tausanovitch, Chris and Lynn Vavreck. 2020. Democracy Fund + UCLA Nationscape, October 10-17, 2019 (version
-  20200814). Retrieved from [https://www.voterstudygroup.org/downloads?key=9e0589c5-5ecc-4575-be2a-8285262f97fe].
+  20200814). Retrieved from [https://www.voterstudygroup.org/downloads?key=9e0589c5-5ecc-4575-be2a-8285262f97fe.
 
 Steven Ruggles, Sarah Flood, Ronald Goeken, Josiah Grover, Erin Meyer, Jose Pacas and Matthew Sobek. IPUMS USA: Version
   10.0 [dataset]. Minneapolis, MN: IPUMS, 2020. https://doi.org/10.18128/D010.V10.0
@@ -107,3 +107,6 @@ Steven Ruggles, Sarah Flood, Ronald Goeken, Josiah Grover, Erin Meyer, Jose Paca
 Jérôme, B., Jérôme, V., Mongrain, P., & Nadeau, R. (2020). State-Level Forecasts for the 2020 US Presidential 
   Election: Tough Victory Ahead for Biden. PS: Political Science & Politics, 1-4. doi:10.1017/S1049096520001377
 
+Kim, A., &amp; Kim, P. (2019). Estimation of the 2020 US Presidential Election Competition and Election 
+  Stratagies. 2019 IEEE 10th Annual Ubiquitous Computing, Electronics &amp; Mobile Communication Conference 
+  (UEMCON). doi:10.1109/uemcon47517.2019.8992973
