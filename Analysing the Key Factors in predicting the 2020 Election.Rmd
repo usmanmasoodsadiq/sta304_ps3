@@ -53,7 +53,7 @@ Where $y$ represents the proportion of voters who will vote for Donald Trump. Si
 
 # Creating the Model
 
-logitm <- glm(vote_trump~as.factor(employment)+as.factor(gender)+as.factor(race_ethnicity)+as.factor(household_income)+as.factor(education)+as.factor(age), family = "binomial")
+logitm <- glm(data=survey_data, vote_trump~as.factor(employment)+as.factor(gender)+as.factor(race_ethnicity)+as.factor(household_income)+as.factor(education)+as.factor(age), family = "binomial")
 
 summary(logitm)
 
