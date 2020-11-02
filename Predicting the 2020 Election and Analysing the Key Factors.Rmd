@@ -1,5 +1,5 @@
 ---
-title: "Analysing the Key Factors in predicting the 2020 Election"
+title: "Predicting the 2020 Election and Analysing the Key Factors"
 author: "Victor ChanYoung Cho, Usman Sadiq"
 date: "Nov 2nd, 2020"
 output:
@@ -10,7 +10,9 @@ output:
 
 # Abstract
 
-TODO The overall summmary of the report; Mainly include background, what we did for the analyses, results and discussion.
+In the midst of the 2020 United States Election issue, we took this opportunity to investigate the leading factors and predict its outcome using the Daemocracy Fund + UCLA Nationscape ‘Full Data Set’ data (Survey data) and American Community Survey 2018 5 year data (Census Data). After filtering out the approrpriate variables and categorising the varying responses, we modelled a logistic regression equation with the survey data, and analysed the significance of the variables. After that, with the logisitic equation model that we have built, we used the census data to conduct a post-stratification process to finally predict the probability that Donald Trump would win the election. Results showed that the variables we have selected (age, gender, household income to name a few) were all significant key factors that may impact the 2020 US election, and we consequently yielded a result where Donald Trump is likely to not win the US Election. Some limitations exist with our analyses however, mainly such that our varying categorical responses were filtered and simplified based on their relative similarity. We address this bias may have impacted our results, and we suggest selecting numerical variables for the regression model for a better result for future work.
+
+
 
 # Introduction
 
@@ -34,23 +36,26 @@ census_data <- read_csv("./outputs/census_data.csv")
 
 # Model
 
-Our goal for the study as mentioned above is to predict the outcome of the US election, particularly in the interest of Donald Trump's re-election. Using the Democracy Fund + UCLA Nationscape ‘Full Data Set’ from the Voters Study Group(@citeSurveyData), We will implement a binary logistic model that concerns whether citizens will vote from Trump or Bide, then analyse the proportions of Trump voters and Biden voters. 
+Our goal for the study as mentioned above is to predict the outcome of the US election, particularly in the interest of Donald Trump's re-election. Using the Democracy Fund + UCLA Nationscape ‘Full Data Set’ from the Voters Study Group, We will implement a binary logistic model that concerns whether citizens will vote from Trump or Bide, then analyse the proportions of Trump voters and Biden voters. 
 
-To supplement the above, we will also be applying the multilevel regression post-stratification technique on the overall census data(@citeCensusData) obtained through IPUMS to yield the expected the overall outcome of the US election. The detailed procedure and outcome will be described below in the post-stratification section and the results.
+To supplement the above, we will also be applying the multilevel regression post-stratification technique on the overall census data obtained through IPUMS to yield the expected the overall outcome of the US election. The detailed procedure and outcome with our built model will be described below in the post-stratification section and the results section.
 
 ## Model Specifics
 
-We have implemented the linear regression model to model the proportion of the voters who will vote for Donald Trump. We decided to use the logistic regression model as we saw the election process as a binomial process. That is, whether people vote for Trump or Biden could be seen as one Bernoulli random variable, and multiple trials of these result in a binomial process. As mentioned in the data section, the variables we have taken into account to model the probability of voting for Donald Trump is region, state, sex, age, race, hispanic origin, birthplace, years in the united states, education, labor force status and total income. We present our logistic regression model by the following:
+We have implemented logistic regression to model the proportion of the voters who will vote for Donald Trump. We decided to use this model as we saw the election process as a binomial process. That is, whether people vote for Trump or Biden could be seen as one Bernoulli random variable, and multiple trials of these result in a binomial process. As mentioned in the data section, the variables we have taken into account to model the probability of voting for Donald Trump is gender, race_ethnicity, household_income, education, and age. We present our logistic regression model by the following:
 
 
-$$ log(p/1-p) = \beta_0+\beta_1  x_{employment} + \beta_2 x_{gender} + \beta_3 x_{race_ethnicity} + \beta_4 x_{household_income} + \beta_5 x_{education} + \beta_6 x_{age} + \beta_7 x_{hispanic} $$
+$$ log(p/1-p) = \beta_0 +\beta_1  x_{gender} + \beta_2 x_{race_enthnicity} + \beta_3 x_{household_income} + \beta_4 x_{education} + \beta_5 x_{age} $$
 
-Where $p$ represents the proportion of voters who will vote for Donald Trump. Similarly, $\beta_0$ represents the intercept of the model, and is the probability of voting for Donald Trump at age 0. $\beta_1$ represents the log odds that change for each unit increase in employment, $\beta_2$ represents the log odds based on gender, $\beta_3$  based on ethnicity, $\beta_4$ based on household income, $\beta_5$  based on education, $\beta_6$ based on age, and $\beta_7$, based on hispanic.
-
+Where $p$ represents the proportion of voters who will vote for Donald Trump. $\beta_0$ represents the intercept of the model. The components consist of $\beta_1$ representing the log odds based on gender, $\beta_2$ based on race ethnicity, $\beta_3$  based on household income, $\beta_4$ based on age, and $\beta_5$ based on education.
 
 ```{r, include=FALSE}
 
 logreg <- glm(data=survey_data, vote_trump~as.factor(gender)+as.factor(race_ethnicity)+as.factor(household_income)+as.factor(education)+age, family = "binomial")
+
+broom::tidy(logreg)
+
+
 
 ```
 
@@ -96,12 +101,13 @@ Here you will summarize the previous sections and discuss conclusions drawn from
 
 ## Weaknesses
 
-Here we discuss weaknesses of the study, data, analysis, etc. You can also discuss areas for improvement.
+While our analyses showed plausible results, it is important to understand that the prediction must be taken as a rough estimate. Preparing the data was not easy as there were so many categorical variables. Due to the above, we had to immensely simplify the varying responses of the categorical variables into constrained groupings. For instance, relatively similar responses were grouped into their own categories and data given with a range of values were mutated so the census data and the survey data match up. We address that this could have potentially caused some inaccuracy, as our data used such categorically constrained variables to simplify the categorical responses.
 
 ## Next Steps
 
-Here you discuss subsequent work to be done after this report. This can include next steps in terms of statistical analysis (perhaps there is a more efficient algorithm available, or perhaps there is a caveat in the data that would allow for some new technique). Future steps should also be specified in terms of the study setting (eg. including a follow-up survey on something, or a subsequent study that would complement the conclusions of your report).
+We feel that is necessary to compare our analyses results to the actual outcome of the election. This way, not only we maybe able to analyse our possible caveats that may have been missed. We could possibly apply this to furthur analyses after the election, and analyse what may have been the biggest factor behind the results.
 
+We assertthat it would be a lot better if the variables to be used for the dataset would be selected differently. We feel that due to varying categorical responses, it was hard for us to find a common ground in some groupings and we heavily felt that some categorical groupings may be subjective. If our model contained more non-categorical variables, we feel that our results will not be biased towards the categories we have made based on our relative judgments on which response should grouped with while simplying our data.
 
 # References
 
