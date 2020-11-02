@@ -55,7 +55,7 @@ Where $p$ represents the proportion of voters who will vote for Donald Trump. Si
 
 # Creating the Model
 
-logreg <- glm(data=survey_data, vote_trump~as.factor(employment)+as.factor(gender)+as.factor(race_ethnicity)+as.factor(household_income)+as.factor(education)+as.factor(age) + as.factor(hispanic), family = "binomial")
+logreg <- glm(data=survey_data, vote_trump~as.factor(gender)+as.factor(race_ethnicity)+as.factor(household_income)+as.factor(education)+as.factor(age) + as.factor(hispanic), family = "binomial")
 
 # summary(logitm)
 
@@ -63,6 +63,7 @@ logreg <- glm(data=survey_data, vote_trump~as.factor(employment)+as.factor(gende
 # summary(model)
 # OR
 broom::tidy(logreg)
+
 
 ```
 
@@ -72,9 +73,11 @@ In order to estimate the proportion of voters who will vote for Donald Trump I n
 
 ```{r, include=FALSE}
 
+census_data
+
 # Here I will perform the post-stratification calculation
 census_data$estimate <-
-  model %>%
+  logreg %>%
   predict(newdata = census_data)
 
 census_data %>%
