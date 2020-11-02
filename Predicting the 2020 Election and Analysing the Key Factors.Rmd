@@ -16,11 +16,11 @@ In the midst of the 2020 United States Election issue, we took this opportunity 
 
 # Introduction
 
-An overarching issue that rises an immense political controvery is the United States presidential election. In 2016, Donald Trump impressed the political scene by being elected as the Republican nominee for president. He also continuously won the white house votes, which eventually lead to a surprise of being elected as the president, while many observers of the political scene predicted the election of Hillary Clinton. (Jérôme et. al, 2020) Now, with the election being an ongoing event, Trump has already checked on the different parties in the previous years. (Kim & Kim, 2020) With the ongoing presidential debate as well, Trump has also been having his firm stance against Biden, for his another successful election. The US presidential election as we observe is mainly a competition of the current and former president versus the most popular candiate. We will be modelling a multilevel logistic regression with the UCLA nationscape dataset and preform a poststratification process with the American Community Surveys (ACS) to predict the election outcome and to target the most successful candidate for the 2020 US election.
+An overarching issue that rises an immense political controvery is the United States presidential election. In 2016, Donald Trump impressed the political scene by being elected as the Republican nominee for president. He also continuously won the white house votes, which eventually lead to a surprise of being elected as the president, while many observers of the political scene predicted the election of Hillary Clinton. (Jérôme et. al, 2020) Now, with the election being an ongoing event, Trump has already checked on the different parties in the previous years. (Kim & Kim, 2020) With the ongoing presidential debate as well, Trump has also been having his firm stance against Biden, for his another successful election. The US presidential election as we observe is mainly a competition of the current and former president versus the most popular candidate. 
 
 # Data
 
-We will be using the Democracy Fund + UCLA Nationscape ‘Full Data Set’ for modelling and the ACS 2018 5 year data for post-stratification in order to perform our analysis. From the ACS data, we selected the key factors which we believed would have the strongest effect on the prediction of the outcome. The variables are the region, state, sex, age, race, hispanic origin, birthplace, years in the united states, education, labor force status and total income.
+We will be using the Democracy Fund + UCLA Nationscape ‘Full Data Set’ for the multi-level logistic regression modelling and the ACS 2018 5 year data for post-stratification in order to perform our analysis. From the ACS data, we selected the key factors which we believed would have the strongest effect on the prediction of the outcome. The variables are the sex, age, race, education and total income of potential voters.
 
 
 ```{r setup, include=FALSE}
@@ -59,9 +59,9 @@ broom::tidy(logreg)
 
 ```
 
-## Post-Stratification 
+## Post-Stratification
 
-In order to estimate the proportion of voters who will vote for Donald Trump I need to perform a post-stratification analysis. Here I create cells based off different ages. Using the model described in the previous sub-section I will estimate the proportion of voters in each age bin. I will then weight each proportion estimate (within each bin) by the respective population size of that bin and sum those values and divide that by the entire population size. 
+In order to estimate the proportion of voters who will vote for Donald Trump I need to perform a post-stratification analysis. The post-stratification refers to the process of adjusting the estimates, essentially a weighted average of estimates from all possible combinations of attributes. This technique is useful as it increases the representativeness of the sample so we have greater confidence in the validity of our inferences about population parameters of interest. Here I create cells based off different ages, gender, education, household income and race. These factors were chosen as they would have a rather large impact on our prediction of the votes. Using the model described in the previous sub-section I will estimate the proportion of voters in each  bin. I will then weight each proportion estimate (within each bin) by the respective population size of that bin and sum those values and divide that by the entire population size. 
 
 ```{r, include=FALSE}
 
@@ -76,9 +76,7 @@ census_data$estimate <-
   exp(census_data$logodds_estimate)/(1+exp(census_data$logodds_estimate))
 
 
-census_data %>%
-  mutate(alp_predict_prop = estimate*n) %>%
-  summarise(alp_predict = sum(alp_predict_prop)/sum(n))
+
 
 
 ```
@@ -86,28 +84,37 @@ census_data %>%
 
 # Results
 
-Here you will include all results. This includes descriptive statistics, graphs, figures, tables, and model results. Please ensure that everything is well formatted and in a report style. You must also provide an explanation of the results in this section. 
+In the analysis, we estimate the proportion of voters in favour of voting for the republicans modelled by a multilevel logistic regression model, which accounted for the age, gender, race, household income and education of the voter.. The results from the analysis are as follows:
 
-```{r}
+```{r echo=FALSE}
+census_data %>%
+  mutate(alp_predict_prop = estimate*n) %>%
+  summarise(alp_predict = sum(alp_predict_prop)/sum(n))
+```
+
+We can see that the value we get is 0.366. This means that 36.6% of the voters are likely to vote for the Republican party while 63.4% voters are likely to pick the Democratic party. In order to see if our results are statistically significant, we take a look at the p-values for each of the variables used in our logistic regression model.
+
+```{r echo=FALSE}
 broom::tidy(logreg)
 ```
 
-
-Please ensure that everything is well labelled. So if you have multiple histograms and plots, calling them Figure 1, 2, 3, etc. and referencing them as Figure 1, Figure 2, etc. in your report will be expected. The reader should not get lost in a sea of information. Make sure to have the results be clean, well formatted and digestible.
+As the p-value of each of our estimated coefficient is less than 0.05, the results are statistically significant which means it is very unlikely that the model is incorrect based on these variables.
 
 # Discussion
 
-Here you will summarize the previous sections and discuss conclusions drawn from the results. Make sure to elaborate and connect your analysis to the goal of the study.
+We implemented a multi-level logistic regression model on the UCLA data and then performed post-stratification analysis on the model to predict the proportion of voters likely to vote for the Republican party. We included the factors in our logistic regression which we believed would have the strongest effect on the prediction. These factors are age, gender, race, household income and education. Census data was used from ACS 5 year data for the post-stratification analysis.
+
+The results of our model indicate that the Democratic party would have the more popular vote as their proportion is 0.634 compared to the Republican's 0.366. As the Democratic party is predicted to win 63.4% of the total votes, we conclude that it is very likely that the Democratic party would win the 2020 US Elections 
 
 ## Weaknesses
 
-While our analyses showed plausible results, it is important to understand that the prediction must be taken as a rough estimate. Preparing the data was not easy as there were so many categorical variables. Due to the above, we had to immensely simplify the varying responses of the categorical variables into constrained groupings. For instance, relatively similar responses were grouped into their own categories and data given with a range of values were mutated so the census data and the survey data match up. We address that this could have potentially caused some inaccuracy, as our data used such categorically constrained variables to simplify the categorical responses.
+While our analyses shows plausible results, it is important to understand that the prediction must be taken as a rough estimate. Preparing the data was not easy as there were so many categorical variables. We had to immensely simplify the varying responses of the categorical variables into constrained groupings. For instance, relatively similar responses were grouped into their own categories and data given with a range of values were mutated so the census data and the survey data match up. Furthermore, our model predicts the overall popular vote. However, the US president is not elected by a majority of popular vote. Under the Constitution, the candidate who wins the majority of 538 electors, known as the Electoral College, becomes the next president. (Reuters & The Canadian Press, 2020)
 
 ## Next Steps
 
-We feel that is necessary to compare our analyses results to the actual outcome of the election. This way, not only we maybe able to analyse our possible caveats that may have been missed. We could possibly apply this to furthur analyses after the election, and analyse what may have been the biggest factor behind the results.
+A possible next step in order to improve the model could be to perform a more detailed analysis by analyzing the electoral college votes rather than overall popular vote. Furthermore, it is imperative to compare our analysis results to the actual outcome of the election. Analyzing the difference in actual votes and our estimation would point out the caveats in our model and give us a better understanding for future predictions. Moreover, it would be better if the variables used for the dataset would be selected differently. Due to varying categorical responses, some categorical groupings may be subjective. If the model contained more non-categorical variables, the results would not be biased towards the categories based on relative judgments while simplifying the data.
 
-We assertthat it would be a lot better if the variables to be used for the dataset would be selected differently. We feel that due to varying categorical responses, it was hard for us to find a common ground in some groupings and we heavily felt that some categorical groupings may be subjective. If our model contained more non-categorical variables, we feel that our results will not be biased towards the categories we have made based on our relative judgments on which response should grouped with while simplying our data.
+\newpage
 
 # References
 
