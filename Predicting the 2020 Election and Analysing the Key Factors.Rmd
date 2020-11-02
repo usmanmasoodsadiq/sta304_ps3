@@ -131,3 +131,6 @@ Kim, A., &amp; Kim, P. (2019). Estimation of the 2020 US Presidential Election C
   Stratagies. 2019 IEEE 10th Annual Ubiquitous Computing, Electronics &amp; Mobile Communication Conference 
   (UEMCON). doi:10.1109/uemcon47517.2019.8992973
   
+Reuters. (2020, October 30). What is the U.S. electoral college and how does it work? Retrieved November 02, 
+  2020, from https://nationalpost.com/news/world/what-is-the-u-s-electoral-college-and-how-does-it-work?fbclid=I
+  wAR2EMcFmLYDbc__-j8CML1HkyqphbkUODRIGugsZun0Th5pEz-2I0JJAT_o
