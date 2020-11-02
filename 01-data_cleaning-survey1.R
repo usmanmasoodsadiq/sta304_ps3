@@ -65,10 +65,10 @@ reduced_data <-
   mutate(household_income = 
            case_when(
              (household_income == "Less than $14,999" | household_income == "$15,000 to $19,999" | 
-                household_income == "$20,000 to $24,999" | household_income == '<NA>') ~ "less than $24,999",
+                household_income == "$20,000 to $24,999" | household_income == '<NA>') ~ "less than $25,000",
              (household_income == "$25,000 to $29,999" | household_income == "$30,000 to $34,999" | 
                 household_income == "$35,000 to $39,999"| household_income == "$40,000 to $44,999" |
-                household_income == "$45,000 to $49,999") ~ "24,999 to 49,999",
+                household_income == "$45,000 to $49,999") ~ "25,000 to 49,999",
              (household_income == "$50,000 to $54,999" | household_income == "$55,000 to $59,999" | 
                 household_income == "$60,000 to $64,999"| household_income == "$65,000 to $69,999" |
                 household_income == "$70,000 to $74,999" | household_income == "$75,000 to $79,999" |
