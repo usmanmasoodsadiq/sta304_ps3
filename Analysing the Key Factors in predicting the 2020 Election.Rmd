@@ -24,21 +24,11 @@ We will be using the Democracy Fund + UCLA Nationscape ‘Full Data Set’ for m
 ```{r setup, include=FALSE}
 library(tidyverse)
 
-raw_data <- read_dta("ns20200625/ns20200625.dta")
-# Add the labels
-
-raw_data <- labelled::to_factor(raw_data)
-
-# unique(raw_data$e)
-
 # Loading in the cleaned survey Data
 survey_data <- read_csv("./outputs/survey_data.csv")
 
 # Loading in the cleaned census Data
 census_data <- read_csv("./outputs/census_data.csv")
-
-survey_data$education
-
 ```
 
 
@@ -60,20 +50,7 @@ Where $p$ represents the proportion of voters who will vote for Donald Trump. Si
 
 ```{r, include=FALSE}
 
-# Creating the Model
-# 
 logreg <- glm(data=survey_data, vote_trump~as.factor(gender)+as.factor(race_ethnicity)+as.factor(household_income)+as.factor(education)+age, family = "binomial")
-
-# logreg <- model <- glm(vote_trump ~ age + gender + race_asian_pacific + race_white + race_black + race_other, 
-#             data=survey_data, family="binomial")
-
-# summary(logitm)
-
-# Model Results (to Report in Results section)
-# summary(model)
-# OR
-broom::tidy(logreg)
-
 
 ```
 
@@ -140,3 +117,4 @@ Jérôme, B., Jérôme, V., Mongrain, P., & Nadeau, R. (2020). State-Level Forec
 Kim, A., &amp; Kim, P. (2019). Estimation of the 2020 US Presidential Election Competition and Election 
   Stratagies. 2019 IEEE 10th Annual Ubiquitous Computing, Electronics &amp; Mobile Communication Conference 
   (UEMCON). doi:10.1109/uemcon47517.2019.8992973
+  
